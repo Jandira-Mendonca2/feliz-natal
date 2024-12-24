@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Feliz Natal</title>
+</head>
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #000;
+    min-height: 100vh;
+    overflow: hidden;
+    background-size: cover;
+}
+.plan{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    perspective: 1000px;
+    perspective-origin: center -200px;
+    background-color: #4caf5042;
+}
+.tree{
+    width: 100px;
+    height: 200px;
+    position: relative;
+    margin: auto;
+    transform-style: preserve-3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: 10s rotate infinite linear;
+}
+@keyframes rotate {
+    from{
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+    to{
+        transform: rotateX(0deg) rotateY(360deg);
+    }
+}
+.leaf{
+    --deg:0deg;
+    width: 100px;
+    height: 200px;
+    background-image: linear-gradient(60deg, lightseagreen,green);
+    transform-style: preserve-3d;
+    position: absolute;
+    transform-origin:left;
+    /* transform: translateY(50%) rotateY(var(--deg)); */
+    transform: translateX(50%) rotateY(var(--deg));  
+    clip-path: polygon(
+        0% 0%, 
+        20% 10%,
+        5% 10%, 
+        30% 20%, 
+        5% 20%, 
+        40% 30%, 
+        5% 30%, 
+        50% 40%,
+        5% 40%, 
+        60% 50%, 
+        5% 50%, 
+        70% 60%, 
+        5% 60%,
+        80% 70%, 
+        5% 70%, 
+        90% 80%,
+        5% 80%, 
+        100% 90%, 
+        5% 90%, 
+        100% 100%, 
+        0% 100%
+);  
+}
+.trunk{
+    width: 10px;
+    height: 100px;
+    background-image: linear-gradient(45deg, brown, chocolate);
+    transform-style: preserve-3d;
+    position: absolute;
+    transform-origin: left;
+    top: 150px;
+    transform: translateX(50%) rotateY(var(--deg));
+}
+.shadow{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    background-color: #0324049a;
+    transform-origin: center;
+    top: 90%;
+    transform:rotateX(90deg) ;
+    border-radius: 100%;
+    box-shadow: 0px 0px 10px 50px #03240400;
+    filter: blur(15px);
+}
+.star{
+    width: 50px;
+    height: 50px;
+    background-image: linear-gradient(60deg, goldenrod, yellow);
+    background-color: yellow;
+    position: absolute;
+    top: -40px;
+    transform: rotateY(var(--deg));
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+);
+}
+.decoration{
+    --top:-5px;
+    --width:50px;
+    --heigth: 50px;
+    width: var(--width);
+    height: var(--heigth);
+    background-color: transparent;
+    box-shadow: 0px 0px 0px 2px yellow;
+    position: absolute;
+    transform: rotateX(90deg);
+    border-radius: 100%;
+    top: var(--top);
+}
+.decoration:after, 
+.decoration:before{
+    display: block;
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    position: absolute;
+    border-radius: 100%;
+    transform: rotateX(-45deg);
+    top: 0px;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%,
+        98% 35%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+);
+}
+.decoration:nth-child(even){
+    transform: rotateX(90deg) rotateZ(180deg);
+}
+.decoration:after{
+    top: 80%; 
+}
+@font-face {
+    font-family:'natal';
+    src: url(MerryChristmasFlake.ttf) format(truetype);
+}
+@font-face {
+    font-family:'star';
+    src: url(MerryChristmasStar.ttf) format(truetype);
+}
+.tree h1{
+    font-family: "natal";
+    font-size: 30px;
+    position: absolute;
+    transform: translateX(-50%) translateY(0%);
+    top: -120px;
+    left: 50%;
+    text-align: center;
+    font-weight: bolder;
+    /* color: rgba(0, 128, 0, 0.535) */
+    color: #fff;
+
+}
+.snow-conteiner{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.snow, .snow:after, .snow:before{
+    content: "";
+    position: absolute;
+    top: -700px;
+    left:0;
+    right: 0;
+    bottom: 0;
+    background-image:
+    radial-gradient(4px 4px at 100px 50px, #fff, transparent),
+    radial-gradient(6px 6px at 200px 150px, #fff, transparent), 
+    radial-gradient(3px 3px at 300px 250px, #fff, transparent),
+    radial-gradient(4px 4px at 400px 350px, #fff, transparent),
+    radial-gradient(6px 6px at 500px 100px, #fff, transparent),
+    radial-gradient(3px 3px at 50px 200px, #fff, transparent),
+    radial-gradient(4px 4px at 150px 300px, #fff, transparent),
+    radial-gradient(6px 6px at 250px 400px, #fff, transparent),
+    radial-gradient(3px 3px at 350px 500px, #fff, transparent);
+    background-size: 650px 650px;
+    animation: fall 4s linear infinite, drift 10s linear infinite;
+}
+.snow::after{
+    margin-left: -200px;
+    opacity: 0.5;
+    filter: blur(1px);
+    animation-duration: 6s;
+    animation-direction: reverse;
+}
+.snow::before{
+    margin-left: -300px;
+    opacity: 0.6;
+    filter: blur(1.5px);
+    animation-duration: 9s;
+    animation-direction: reverse;
+}
+@keyframes fall{
+    from{
+        transform: translateY(0) translateX(0);
+    }
+    to{
+        transform: translateY(700px) translateX(100px);
+    }
+}
+@keyframes drift{
+    0%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX(50px);
+    }
+    50%{
+        transform: translateY(-50px);
+    }
+    75%{
+        transform: translateY(50px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+h1{
+    font-family: "star";
+    font-size: 2.5em;
+    position: absolute;
+    transform: translateX(-50%) translateY(0%);
+    bottom: 100px;
+    left: 50%;
+    text-align: center;
+    font-weight: lighter;
+    color: #fff;
+
+}
+</style>
+<body>
+    <div class="plan">
+        <div class="tree">
+            <div class="leaf" style="--deg:0deg"></div>
+            <div class="leaf" style="--deg:15deg"></div>
+            <div class="leaf" style="--deg:30deg"></div>
+            <div class="leaf" style="--deg:45deg"></div>
+            <div class="leaf" style="--deg:60deg"></div>
+            <div class="leaf" style="--deg:75deg"></div>
+            <div class="leaf" style="--deg:90deg"></div>
+            <div class="leaf" style="--deg:105deg"></div>
+            <div class="leaf" style="--deg:120deg"></div>
+            <div class="leaf" style="--deg:135deg"></div>
+            <div class="leaf" style="--deg:150deg"></div>
+            <div class="leaf" style="--deg:165deg"></div>
+            <div class="leaf" style="--deg:180deg"></div>
+            <div class="leaf" style="--deg:195deg"></div>
+            <div class="leaf" style="--deg:210deg"></div>
+            <div class="leaf" style="--deg:225deg"></div>
+            <div class="leaf" style="--deg:240deg"></div>
+            <div class="leaf" style="--deg:255deg"></div>
+            <div class="leaf" style="--deg:270deg"></div>
+            <div class="leaf" style="--deg:285deg"></div>
+            <div class="leaf" style="--deg:300deg"></div>
+            <div class="leaf" style="--deg:315deg"></div>
+            <div class="leaf" style="--deg:330deg"></div>
+            <div class="leaf" style="--deg:345deg"></div>
+            <div class="leaf" style="--deg:360deg"></div>
+            <!-- <div class="leaf" style="--deg:0deg"></div>
+            <div class="leaf" style="--deg:0deg"></div>
+            <div class="leaf" style="--deg:0deg"></div>
+            <div class="leaf" style="--deg:0deg"></div>
+            <div class="leaf" style="--deg:0deg"></div>
+            <div class="leaf" style="--deg:0deg"></div>
+            <div class="leaf" style="--deg:0deg"></div>
+            <div class="leaf" style="--deg:0deg"></div>
+            <div class="leaf" style="--deg:0deg"></div>
+            <div class="leaf" style="--deg::0deg"></div> -->
+
+            <div class="trunk" style="--deg:0deg"></div>
+            <div class="trunk" style="--deg:15deg"></div>
+            <div class="trunk" style="--deg:30deg"></div>
+            <div class="trunk" style="--deg:45deg"></div>
+            <div class="trunk" style="--deg:60deg"></div>
+            <div class="trunk" style="--deg:75deg"></div>
+            <div class="trunk" style="--deg:90deg"></div>
+            <div class="trunk" style="--deg:105deg"></div>
+            <div class="trunk" style="--deg:120deg"></div>
+            <div class="trunk" style="--deg:135deg"></div>
+            <div class="trunk" style="--deg:150deg"></div>
+            <div class="trunk" style="--deg:165deg"></div>
+            <div class="trunk" style="--deg:180deg"></div>
+            <div class="trunk" style="--deg:195deg"></div>
+            <div class="trunk" style="--deg:210deg"></div>
+            <div class="trunk" style="--deg:225deg"></div>
+            <div class="trunk" style="--deg:240deg"></div>
+            <div class="trunk" style="--deg:255deg"></div>
+            <div class="trunk" style="--deg:270deg"></div>
+            <div class="trunk" style="--deg:285deg"></div>
+            <div class="trunk" style="--deg:300deg"></div>
+            <div class="trunk" style="--deg:315deg"></div>
+            <div class="trunk" style="--deg:330deg"></div>
+            <div class="trunk" style="--deg:345deg"></div>
+            <div class="trunk" style="--deg:360deg"></div>
+
+            <div class="shadow"></div>
+
+            <div class="star" style="--deg:0deg"></div>
+            <div class="star" style="--deg:30deg"></div>
+            <div class="star" style="--deg:60deg"></div>
+            <div class="star" style="--deg:90deg"></div>
+            <div class="star" style="--deg:120deg"></div>
+            <div class="star" style="--deg:150deg"></div>
+            <div class="star" style="--deg:180deg"></div>
+
+            <div class="decoration" style="--top:0px; --width:25px; height:25px"></div>
+            <div class="decoration" style="--top:10px; --width:35px; height:35px"></div>
+            <div class="decoration" style="--top:20px; --width:45px; height:45px"></div>
+            <div class="decoration" style="--top:30px; --width:55px; height:55px"></div>
+            <div class="decoration" style="--top:40px; --width:65px; height:65px"></div>
+            <div class="decoration" style="--top:50px; --width:75px; height:75px"></div>
+            <div class="decoration" style="--top:60px; --width:95px; height:95px"></div>
+            <div class="decoration" style="--top:70px; --width:105px; height:105px"></div>
+            <div class="decoration" style="--top:80px; --width:115px; height:115px"></div>
+            <div class="decoration" style="--top:90px; --width:125px; height:125px"></div>
+
+            <h1>Feliz Natal</h1>
+        </div>
+    </div>
+    <div class="snow-conteiner">
+        <div class="snow"></div>
+    </div>
+    <h1>Que cada presente dado ou recebido seja um lembrete do amor e das amizades que enriquecem nossas vidas.</h1>
+</body>
+</html>
